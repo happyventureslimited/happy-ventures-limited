@@ -71,8 +71,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Form submission
-    document.querySelector('.contact-form').addEventListener('submit', function (e) {
+    document.querySelector('.contact-form').addEventListener('submit', async function (e) {
         e.preventDefault();
+    
+        const formData = new FormData(this);
+    
+        await fetch("/", {
+            method: "POST",
+            body: formData,
+        });
+    
         showModal();
         this.reset();
     });
